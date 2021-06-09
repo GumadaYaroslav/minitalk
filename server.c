@@ -24,9 +24,12 @@ void	handl_sig(int sig)
 	{
 		count = 7;
 		buf[j] = s;
-		if (s == '\0')
-			write(1, buf, ft_strlen(buf));
 		j++;
+		if (s == '\0')
+		{
+			write(1, buf, ft_strlen(buf));
+			j = 0;
+		}
 		s = 0;
 	}
 	if (j == 999)

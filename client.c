@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	int	pid;
 	int	i;
 
-	if (argc == 1)
+	if (argc == 1 || argc == 2)
 		error("clinet: you need to enter PID and string");
 	if (argc > 3)
 		error("clinet: too many arguments");

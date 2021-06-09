@@ -1,4 +1,4 @@
-SRCS_C :=	client.c error.c
+SRCS_C := client.c error.c
 
 SRCS_S := server.c 
 
@@ -14,18 +14,12 @@ OBJS_C = $(SRCS_C:.c=.o)
 
 OBJS_S = $(SRCS_S:.c=.o)
 
-
 %.o: %.c	minitalk.h
 	$(GCC) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS_C) $(OBJS_S)
-	$(MAKE) -C ./libft
-	cp libft/libft.a .
-	$(GCC) $(FLAGS) $(SRCS_C) $(SRCS_S)
-	gcc -Wall -Wextra -Werror $(OBJS_C) libft.a -o client
-	gcc -Wall -Wextra -Werror $(OBJS_S) libft.a -o server
+$(NAME): server client
 
 server: $(OBJS_S)
 	$(MAKE) -C ./libft
@@ -37,7 +31,7 @@ client: $(OBJS_C)
 	$(MAKE) -C ./libft
 	cp libft/libft.a .
 	$(GCC) $(FLAGS) $(SRCS_C)
-	gcc -Wall -Wextra -Werror $(OBJS_C) libft.a -o server	
+	gcc -Wall -Wextra -Werror $(OBJS_C) libft.a -o client	
 
 clean:
 	$(MAKE) clean -C ./libft
